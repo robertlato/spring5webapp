@@ -48,10 +48,18 @@ public class BootStrapData implements CommandLineRunner {
 
         publisherRepository.save(helios);
 
+        ddd.setPublisher(helios);
+        noEJB.setPublisher(helios);
+        helios.getBooks().add(noEJB);
+        helios.getBooks().add(ddd);
+
+        publisherRepository.save(helios);
+
 
         System.out.println("Started in bootstrap");
         System.out.println("Number of books: " + bookRepository.count());
         System.out.println("Number of publishers: " + publisherRepository.count());
+        System.out.println("Publisher number of books: " + helios.getBooks().size());
         System.out.println(helios);
 
     }
